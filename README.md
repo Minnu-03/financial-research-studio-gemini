@@ -1,10 +1,10 @@
-# Financial Research Studio 📈🤖
+# Financial Research Studio 
 
 **Financial Research Studio** is an enterprise-grade AI assistant built using Google's Agent Development Kit (ADK), Agent Runtime, Vertex AI Memory Bank, and Cloud Run. It automates financial research workflows—fetching live market data, executing Python code in an isolated sandbox, maintaining persistent research notes in Firestore, generating dynamic dashboard visualizations saved to Google Cloud Storage, and rendering rich A2UI cards.
 
 ---
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 The platform uses a decoupled frontend-to-backend architecture communicating via the Agent-to-Agent (A2A) protocol:
 
@@ -32,37 +32,37 @@ flowchart TD
 
 ---
 
-## 🌟 Implemented Features
+##  Implemented Features
 
-### 📊 1. Financial Report Fetching & Web Retrieval
+###  1. Financial Report Fetching & Web Retrieval
 - **Live Stock Quotes**: Fetches real-time price, volume, change, and 52-week ranges (`fetch_live_stock_quote`).
 - **Company Profiles**: Retrieves company background, sector, industry, market cap, and fundamentals (`get_company_info`).
 
-### 📝 2. Research Notes (Google Cloud Firestore)
+###  2. Research Notes (Google Cloud Firestore)
 - **Persistent Notes**: Saves research notes with rating tags (e.g. *Strong Buy*, *Hold*) into Firestore (`create_research_note`).
 - **Query & List**: Fetches existing company notes (`get_research_note`) or lists all tracked research notes (`list_research_notes`).
 
-### ☁️ 3. Cloud Storage Integration
+###  3. Cloud Storage Integration
 - **Public Artifact Buckets**: Dynamically uploads generated visual dashboards to Google Cloud Storage bucket (`gs://financial-research-studio-qwiklabs-gcp-02-a744a4e1b2f4`).
 - **HTTPS Serving**: Exposes GCS public URLs directly to the A2UI card renderer.
 
-### 📈 4. Financial Dashboard Generation
+###  4. Financial Dashboard Generation
 - **Automated Charting**: Generates matplotlib/Pillow financial dashboards (`generate_dashboard_image`) comparing revenue, margin trends, and market positioning.
 - **Card Embeds**: Embeds dashboard images into A2UI UI cards.
 
-### 🧠 5. Vertex AI Memory Bank Integration
+###  5. Vertex AI Memory Bank Integration
 - **Cross-Session Memory**: Integrates Vertex AI Memory Bank (`PreloadMemoryTool`) for long-term facts and user preferences.
 - **Session Event Callback**: `generate_memories_callback` sends session events after turns to extract durable user facts.
 
-### 💻 6. Python Sandbox Execution
+###  6. Python Sandbox Execution
 - **Isolated Code Sandbox**: `AgentEngineSandboxCodeExecutor` executes custom Python scripts in a safe, isolated container.
 - **Financial Math**: Computes metrics (Revenue Growth, Net Margin, Operating Margin, ROE, P/E Ratios, Earnings Growth).
 
-### 🎨 7. A2UI Rich UI Component Rendering
+###  7. A2UI Rich UI Component Rendering
 - **Declarative UI**: Uses A2UI v0.8 Basic Catalog (`Card`, `Column`, `Row`, `Text`, `Image`).
 - **Unified Rendering**: Works natively in both `adk web` playground and custom web frontends via `a2ui_callback`.
 
-### ⚖️ 8. Peer Comparison & Competitive Positioning Engine
+###  8. Peer Comparison & Competitive Positioning Engine
 - **Automated Tool-Chaining**: Takes company tickers (e.g., `AAPL vs MSFT`), automatically fetches quotes/profiles, passes dataset to Python sandbox, calculates KPIs, and generates comparison dashboard.
 - **Privacy & Clean Output**: Internal reasoning and code execution remain quiet; returns only:
   - Revenue Growth Ranking
@@ -74,13 +74,13 @@ flowchart TD
   - Executive Summary
   - Dashboard Card Output
 
-### 🚀 9. Production Cloud Run Frontend
+###  9. Production Cloud Run Frontend
 - **FastAPI Proxy**: Standardized proxy (`frontend/main.py`) running on Google Cloud Run.
 - **IAM Authorization**: Uses Service Account credentials with `roles/aiplatform.user` to communicate securely with Agent Runtime over A2A.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 financial-research-studio/
@@ -103,7 +103,7 @@ financial-research-studio/
 
 ---
 
-## 🛠️ Local Setup & Development
+##  Local Setup & Development
 
 ### 1. Prerequisites
 - Python 3.11+
@@ -138,7 +138,7 @@ Open local frontend: `http://localhost:8080`
 
 ---
 
-## 🚀 Cloud Deployment
+##  Cloud Deployment
 
 ### 1. Deploy Agent to Agent Platform (Agent Runtime)
 ```bash
